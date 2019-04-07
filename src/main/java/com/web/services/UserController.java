@@ -1,8 +1,5 @@
 package com.web.services;
 
-import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +17,14 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	
+	// Get All Users
 	@RequestMapping("/getAllUsers")
 	public Iterable<User> getAllUsers () {
 		return userRepository.findAll();
 	}
 	
+	// Add New User
 	@RequestMapping(path="/addUser", method=RequestMethod.POST) 
 	public @ResponseBody String addNewUser 
 	(
@@ -34,9 +34,10 @@ public class UserController {
 		
 		User newUser = new User(username, name, password);
 		userRepository.save(newUser);
-		return "Usuario Guardado";
+		return "User Saved";
 	}
 	
+	// Get User By Id
 	@RequestMapping(path="/getUserById", method=RequestMethod.POST) 
 	public @ResponseBody User getUserById
 	(
@@ -44,6 +45,7 @@ public class UserController {
 		return userRepository.findById(id).get();
 	}
 	
+	// Get User By Username
 	public @ResponseBody User getUserByUsername
 	(
 			@RequestParam String username) {
@@ -51,6 +53,7 @@ public class UserController {
 	}
 	
 	
+	// Validate User
 	@RequestMapping(path="/validatedUser", method=RequestMethod.GET)
 	public @ResponseBody User validatedUser 
 	(
@@ -58,6 +61,5 @@ public class UserController {
 			@RequestHeader String password) {
 		return userRepository.findByUsernameAndPassword(username, password);
 	}
-	
 	
 }

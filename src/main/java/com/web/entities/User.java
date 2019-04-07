@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -30,14 +34,11 @@ public class User {
 	private String password;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "user")
+	@JsonIgnore
 	private Set<Commentary> comments = new TreeSet<Commentary>();
 
 	//-------------------------------------------------------------
 	//Methods
-	
-	public String getPassword() {
-		return password;
-	}
 
 	public void setPassword(String password) {
 		this.password = password;

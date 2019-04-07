@@ -46,6 +46,8 @@ public class Artist {
 
 	
 	//--------------------------------------------------------------
+	//Methods
+	
 	public String getName() {
 		return name;
 	}
@@ -85,4 +87,21 @@ public class Artist {
 	public Set<Commentary> getComments() {
 		return comments;
 	}
+	
+	public boolean addComment(Commentary commentary) {
+		return this.comments.add(commentary);
+	}
+	
+	//********************************************************
+	//Constructors
+	
+	public Artist() {
+	}
+	
+	public Artist(String name, String description, String image) {
+		setName(name);
+		setDescription(description);
+		setImage(image);
+	}
+
 }

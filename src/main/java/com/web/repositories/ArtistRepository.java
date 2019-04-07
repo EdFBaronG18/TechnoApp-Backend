@@ -2,8 +2,7 @@ package com.web.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.web.entities.Commentary;
+import com.web.entities.Artist;
 
-public interface ArtistRepository extends CrudRepository<Commentary, Long>{
-
+public interface ArtistRepository extends CrudRepository<Artist, Long>{
 }

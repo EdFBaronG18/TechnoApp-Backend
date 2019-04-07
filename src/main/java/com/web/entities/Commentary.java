@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "commentary")
 public class Commentary {
@@ -28,15 +31,17 @@ public class Commentary {
 	
 	@ManyToOne
 	@JoinColumn(name = "artist_commentary", nullable = false)
+	@JsonIgnore
 	private Artist artist;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_commentary", nullable = false)
+	@JsonIgnoreProperties({"password"})
 	private User user;
 
 
 	//---------------------------------------------------------
-	
+	// Methods
 	public String getContent() {
 		return content;
 	}
@@ -59,5 +64,22 @@ public class Commentary {
 
 	public User getUser() {
 		return user;
+	}
+
+	public void setCreate(Timestamp create) {
+		this.create = create;
+	}
+	
+	//************************************************
+	// Contructors
+	
+	public Commentary() {
+	}
+	
+	public Commentary(User user, Artist artist, String content) {
+		this.create = new Timestamp(System.currentTimeMillis());
+		this.user = user;
+		this.artist = artist;
+		setContent(content);
 	}
 }
