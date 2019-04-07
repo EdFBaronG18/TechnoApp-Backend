@@ -3,6 +3,7 @@ package com.web.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,12 +27,14 @@ public class CommentaryController {
 	
 	// Get All Commentaries
 	@RequestMapping("/getAllCommentaries")
+	@CrossOrigin
 	public Iterable<Commentary> getAllCommentaries() {
 		return commentaryRepository.findAll();
 	}
 	
 	//Add new Commentary
 	@RequestMapping("/addCommentary")
+	@CrossOrigin
 	public @ResponseBody String AddCommentary
 	(
 			@RequestParam Long idArtist,

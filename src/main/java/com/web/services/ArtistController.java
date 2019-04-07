@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,12 +24,14 @@ public class ArtistController {
 	
 	//Get All Artist
 	@RequestMapping("/getAllArtist")
+	@CrossOrigin
 	public Iterable<Artist> getAllArtist () {
 		return artistRepository.findAll();
 	}
 	
 	//Add Artist
 	@RequestMapping(path="/addArtist", method=RequestMethod.POST) 
+	@CrossOrigin
 	public @ResponseBody String addNewArtist 
 	(
 			@RequestParam String 	name			, 
@@ -41,6 +44,7 @@ public class ArtistController {
 	}
 	// Get Artist By Id
 	@RequestMapping(path="/getArtistById", method=RequestMethod.POST) 
+	@CrossOrigin
 	public @ResponseBody Artist getArtistById 
 	(
 			@RequestParam Long idArtist){
@@ -48,7 +52,8 @@ public class ArtistController {
 	}
 	
 	// Get All Comments By Artist Id
-	@RequestMapping(path="/getAllCommentByArtistId", method=RequestMethod.POST) 
+	@RequestMapping(path="/getAllCommentByArtistId", method=RequestMethod.POST)
+	@CrossOrigin
 	public @ResponseBody Set<Commentary>getAllCommentByArtistId
 	(
 			@RequestParam Long idArtist){

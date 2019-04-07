@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,12 +22,14 @@ public class CategoryController {
 	
 	//Get All Categories
 	@RequestMapping("/getAllCategories")
+	@CrossOrigin
 	public Iterable<Category> getAllCategories() {
 		return categoryRepository.findAll();
 	}
 	
 	// Get All Artist by Category
 	@RequestMapping(path="/getArtistByCategoryId", method=RequestMethod.POST) 
+	@CrossOrigin
 	public @ResponseBody Set<Artist>getArtistByCategoryId
 	(
 			@RequestParam Long idCategory){
