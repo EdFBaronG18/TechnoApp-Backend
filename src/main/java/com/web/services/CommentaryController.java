@@ -1,6 +1,9 @@
 package com.web.services;
 
+import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,8 +31,12 @@ public class CommentaryController {
 	// Get All Commentaries
 	@RequestMapping("/getAllCommentaries")
 	@CrossOrigin
-	public Iterable<Commentary> getAllCommentaries() {
-		return commentaryRepository.findAll();
+	public Set<Commentary> getAllCommentaries() {
+		Iterable<Commentary> list = commentaryRepository.findAll();
+		TreeSet<Commentary> set = new TreeSet<>((x,y) ->{return x.getCreate().compareTo(y.getCreate());});
+		for(Commentary e: list)
+			set.add(e);
+		return set;
 	}
 	
 	//Add new Commentary

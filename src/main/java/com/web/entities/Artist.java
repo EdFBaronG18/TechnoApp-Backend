@@ -40,7 +40,7 @@ public class Artist {
 	private Category category;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="artist")
-	private Set<Commentary> comments = new TreeSet<Commentary>();
+	private Set<Commentary> comments = new TreeSet<Commentary>((x,y) ->{return x.getCreate().compareTo(y.getCreate());});
 
 	
 	//--------------------------------------------------------------
