@@ -41,4 +41,18 @@ public class CategoryController {
 		return category.getArtists();
 	}
 	
+	// Add Category
+	@RequestMapping(path="/addCategory", method=RequestMethod.POST) 
+	@CrossOrigin
+	public @ResponseBody String addCategory
+	(
+			@RequestParam String name){
+		
+		Category category = new Category();
+		category.setName(name);
+		categoryRepository.save(category);
+		
+		return "Category Saved Succesfull";
+	}
+	
 }

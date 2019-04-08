@@ -12,15 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.entities.Artist;
+import com.web.entities.Category;
 import com.web.entities.Commentary;
 import com.web.repositories.ArtistRepository;
+import com.web.repositories.CategoryRepository;
 
 @RestController
 public class ArtistController {
 	
 	@Autowired
 	private ArtistRepository artistRepository;
-	
+	@Autowired
+	private CategoryRepository categoryRepository; 
 	
 	//Get All Artist
 	@RequestMapping("/getAllArtist")
@@ -36,9 +39,15 @@ public class ArtistController {
 	(
 			@RequestParam String 	name			, 
 			@RequestParam String 	description		,
-			@RequestParam String 	image			) {
+			@RequestParam String 	image			,
+			@RequestParam Long		idCategory) {
 		
-		Artist artist = new Artist(name, description, image);
+		Optional<Category> optional = categoryRepository.findById(idCategory);
+		
+		if(!optional.isPresent())
+			return null;
+		Category category = optional.get();
+		Artist artist = new Artist(name, description, image, category);
 		artistRepository.save(artist);
 		return "Artist Saved";
 	}

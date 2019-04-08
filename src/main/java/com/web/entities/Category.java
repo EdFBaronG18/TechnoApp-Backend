@@ -5,10 +5,11 @@ import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +23,7 @@ public class Category {
 	@Column(name = "name_category")
 	private String name;
 	
-	@ManyToMany(mappedBy = "categories")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "category")
 	private Set<Artist> artists = new TreeSet<Artist>();
 
 	//-------------------------------------------------------

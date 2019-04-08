@@ -10,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,19 +26,14 @@ public class Artist {
 	@Column(name = "name_artist")
 	private String name;
 	
-	@Column(name = "description_artist")
+	@Column(name = "description_artist ")
 	private String description;
 	
 	@Column(name = "image_artist")
 	private String image;
-
-	@ManyToMany(targetEntity=Category.class, fetch=FetchType.LAZY)
-	@JoinTable(
-	        name = "artist_category", 
-	        joinColumns = { @JoinColumn(name = "id_artist") }, 
-	        inverseJoinColumns = { @JoinColumn(name = "id_category") }
-	    )
-	private Set<Category> categories = new TreeSet<Category>();
+	@ManyToOne
+	@JoinColumn(name = "category_artist")
+	private Category category;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="artist")
 	private Set<Commentary> comments = new TreeSet<Commentary>();
@@ -72,12 +66,12 @@ public class Artist {
 		this.image = image;
 	}
 
-	public Set<Category> getCategories() {
-		return categories;
+	public Category getCategories() {
+		return category;
 	}
 
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category= category;
 	}
 
 	public Long getIdArtist() {
@@ -98,10 +92,11 @@ public class Artist {
 	public Artist() {
 	}
 	
-	public Artist(String name, String description, String image) {
+	public Artist(String name, String description, String image, Category category) {
 		setName(name);
 		setDescription(description);
 		setImage(image);
+		setCategory(category);
 	}
 
 }
