@@ -1,5 +1,7 @@
 package com.web.entities;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -82,8 +84,10 @@ public class Artist {
 		return idArtist;
 	}
 
-	public Set<Commentary> getComments() {
-		return comments;
+	public ArrayList<Commentary> getComments() {
+		ArrayList<Commentary> list = new ArrayList<>(this.comments);
+		Collections.sort(list, (x,y) ->{return x.getCreate().compareTo(y.getCreate());});
+		return list;
 	}
 	
 	public boolean addComment(Commentary commentary) {

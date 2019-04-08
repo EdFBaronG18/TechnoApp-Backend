@@ -1,5 +1,6 @@
 package com.web.entities;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -46,8 +47,8 @@ public class Category {
 		return idCategory;
 	}
 
-	public Set<Artist> getArtists() {
-		return artists;
+	public Iterator<Artist> getArtists() {
+		return artists.iterator();
 	}
 }
 
