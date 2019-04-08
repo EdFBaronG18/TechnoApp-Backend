@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
 @Entity
 @Table(name = "category")
 public class Category {
@@ -24,6 +28,8 @@ public class Category {
 	private String name;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "category")
+	@JsonIgnore
+//	@JsonIgnoreProperties({"artists"})
 	private Set<Artist> artists = new TreeSet<Artist>();
 
 	//-------------------------------------------------------

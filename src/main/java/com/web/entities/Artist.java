@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "artist")
@@ -31,8 +33,10 @@ public class Artist {
 	
 	@Column(name = "image_artist")
 	private String image;
+	
 	@ManyToOne
 	@JoinColumn(name = "category_artist")
+//	@JsonIgnoreProperties({"artists"})
 	private Category category;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="artist")
