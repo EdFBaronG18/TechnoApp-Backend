@@ -1,5 +1,6 @@
 package com.web.services;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Set;
 
@@ -63,7 +64,7 @@ public class ArtistController {
 	// Get All Comments By Artist Id
 	@RequestMapping(path="/getAllCommentByArtistId", method=RequestMethod.POST)
 	@CrossOrigin
-	public @ResponseBody Set<Commentary>getAllCommentByArtistId
+	public @ResponseBody ArrayList<Commentary>getAllCommentByArtistId
 	(
 			@RequestParam Long idArtist){
 		Optional<Artist> optional = artistRepository.findById(idArtist);

@@ -47,8 +47,8 @@ public class Category {
 		return idCategory;
 	}
 
-	public Iterator<Artist> getArtists() {
-		return artists.iterator();
+	public Set<Artist> getArtists() {
+		return artists;
 	}
 }
 
