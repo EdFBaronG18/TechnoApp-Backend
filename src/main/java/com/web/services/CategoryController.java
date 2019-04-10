@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +47,7 @@ public class CategoryController {
 	@CrossOrigin
 	public @ResponseBody String addCategory
 	(
-			@RequestParam String name){
+			@RequestHeader String name){
 		
 		Category category = new Category();
 		category.setName(name);

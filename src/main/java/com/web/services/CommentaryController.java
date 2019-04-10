@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class CommentaryController {
 	private CommentaryRepository commentaryRepository;
 	
 	// Get All Commentaries
-	@RequestMapping("/getAllCommentaries")
+	@RequestMapping(path="/getAllCommentaries", method=RequestMethod.GET)
 	@CrossOrigin
 	public Set<Commentary> getAllCommentaries() {
 		Iterable<Commentary> list = commentaryRepository.findAll();
@@ -40,7 +41,7 @@ public class CommentaryController {
 	}
 	
 	//Add new Commentary
-	@RequestMapping("/addCommentary")
+	@RequestMapping(path="/addCommentary", method=RequestMethod.POST)
 	@CrossOrigin
 	public @ResponseBody String AddCommentary
 	(
@@ -62,7 +63,7 @@ public class CommentaryController {
 	}
 	
 	//Remove Comment by id
-	@RequestMapping("/removeComment")
+	@RequestMapping(path="/removeComment", method=RequestMethod.POST)
 	@CrossOrigin
 	public @ResponseBody String removeComment
 	(
