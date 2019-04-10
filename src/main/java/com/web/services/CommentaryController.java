@@ -30,7 +30,7 @@ public class CommentaryController {
 	private CommentaryRepository commentaryRepository;
 	
 	// Get All Commentaries
-	@RequestMapping(path="/getAllCommentaries", method=RequestMethod.GET)
+	@RequestMapping(path="/getAllCommentaries", method=RequestMethod.GET )
 	@CrossOrigin
 	public Set<Commentary> getAllCommentaries() {
 		Iterable<Commentary> list = commentaryRepository.findAll();
