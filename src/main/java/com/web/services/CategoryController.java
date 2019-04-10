@@ -42,7 +42,7 @@ public class CategoryController {
 	}
 	
 	// Add Category
-	@RequestMapping(path="/addCategory", method=RequestMethod.POST) 
+	@RequestMapping(path="/addCategory", method=RequestMethod.GET) 
 	@CrossOrigin
 	public @ResponseBody String addCategory
 	(
