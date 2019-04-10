@@ -61,6 +61,19 @@ public class CommentaryController {
 		return "Comment added succesfull";
 	}
 	
+	//Remove Comment by id
+	@RequestMapping("/removeComment")
+	@CrossOrigin
+	public @ResponseBody String removeComment
+	(
+			@RequestParam Long idComment
+			){
+		commentaryRepository.deleteById(idComment);
+		return "Comment " + idComment + ": Delete Succesfull";
+	}
+	
+	
+	
 	
 	
 }
